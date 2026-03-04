@@ -1,152 +1,129 @@
 # Tienda-Tecnol-gica-
-Hola bienvenido al emprendimiento estamos trabajando para que sea rápido y seguro🌐
-import { useEffect, useState } from "react";
+Hola bienvenido al emprendimiento estamos trabajando para que sea rápido y seguro🌐   
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Digital Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    body { background:#0f172a; color:white; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:20px 8%; background:#0b1220; position:sticky; top:0; }
+    header h1 { font-weight:800; }
+    header button { background:#22c55e; border:none; padding:10px 20px; border-radius:8px; font-weight:600; cursor:pointer; }
 
-export default function LandingProductoDigital() {
-  const [timeLeft, setTimeLeft] = useState({
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
-  });
+    .hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:80px 8%; }
+    .hero-text { max-width:500px; }
+    .hero-text h2 { font-size:42px; margin-bottom:20px; }
+    .hero-text p { margin-bottom:30px; color:#cbd5e1; }
+    .hero-text button { background:#22c55e; border:none; padding:15px 30px; border-radius:10px; font-size:16px; font-weight:600; cursor:pointer; }
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        let { hours, minutes, seconds } = prev;
-        if (seconds > 0) {
-          seconds--;
-        } else {
-          if (minutes > 0) {
-            minutes--;
-            seconds = 59;
-          } else {
-            if (hours > 0) {
-              hours--;
-              minutes = 59;
-              seconds = 59;
-            }
-          }
-        }
-        return { hours, minutes, seconds };
-      });
-    }, 1000);
+    .hero-img img { width:180px; margin:10px; border-radius:20px; }
 
-    return () => clearInterval(timer);
-  }, []);
+    .products { padding:80px 8%; text-align:center; }
+    .products h3 { font-size:32px; margin-bottom:40px; }
+    .product-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
+    .card { background:#1e293b; padding:30px; border-radius:20px; width:280px; }
+    .card img { width:100%; border-radius:15px; margin-bottom:20px; }
+    .card h4 { margin-bottom:10px; }
+    .price { font-size:22px; font-weight:700; margin:10px 0; }
+    .card button { background:#22c55e; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 text-gray-800">
-      {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Aprende a dominar [TU RESULTADO] en tiempo récord 🚀
-          </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            El método paso a paso que te ayudará a lograr [beneficio principal] sin
-            perder tiempo ni cometer errores innecesarios.
-          </p>
-          <div className="flex gap-4">
-            <button className="bg-black text-white px-8 py-4 rounded-2xl shadow-lg hover:scale-105 transition">
-              Comprar ahora
-            </button>
-            <button className="border border-gray-300 px-8 py-4 rounded-2xl hover:bg-gray-100 transition">
-              Ver detalles
-            </button>
-          </div>
-        </div>
-        <div className="bg-white p-8 rounded-2xl shadow-xl">
-          <div className="h-64 bg-gray-200 rounded-xl flex items-center justify-center">
-            <span className="text-gray-500">Imagen / Mockup del Producto</span>
-          </div>
-        </div>
-      </section>
+    .offer { background:#111827; padding:60px 8%; text-align:center; }
+    .offer h3 { font-size:28px; margin-bottom:20px; }
+    .timer { display:flex; justify-content:center; gap:20px; margin:20px 0; }
+    .time-box { background:#22c55e; color:black; padding:20px; border-radius:15px; width:90px; }
+    .time-box span { display:block; font-size:28px; font-weight:800; }
 
-      {/* PROBLEMA */}
-      <section className="bg-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            ¿Te pasa que intentas [problema] pero no ves resultados?
-          </h2>
-          <p className="text-gray-600 text-lg">
-            La mayoría de las personas fracasan porque no tienen un sistema claro.
-            Saltan de estrategia en estrategia sin una guía estructurada.
-          </p>
-        </div>
-      </section>
+    footer { text-align:center; padding:30px; background:#0b1220; margin-top:40px; color:#94a3b8; }
 
-      {/* SOLUCIÓN */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-          {["Paso 1", "Paso 2", "Paso 3"].map((item, i) => (
-            <div
-              key={i}
-              className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition"
-            >
-              <h3 className="text-xl font-semibold mb-4">{item}</h3>
-              <p className="text-gray-600">
-                Explicación clara y práctica para avanzar de manera estructurada.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+    @media(max-width:768px){
+      .hero { flex-direction:column; text-align:center; }
+      .hero-img img { width:120px; }
+    }
+  </style>
+</head>
+<body>
 
-      {/* QUÉ INCLUYE */}
-      <section className="bg-white py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            ¿Qué incluye el producto?
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {["Módulos completos", "Plantillas descargables", "Bonos exclusivos", "Actualizaciones futuras"].map(
-              (item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="text-2xl">✔️</div>
-                  <p className="text-lg">{item}</p>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
+<header>
+  <h1>TechStore</h1>
+  <button>Comprar Ahora</button>
+</header>
 
-      {/* TESTIMONIOS */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Lo que dicen nuestros clientes
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="bg-white p-8 rounded-2xl shadow-md">
-                <p className="text-gray-600 mb-4">
-                  "Este producto cambió completamente mi forma de trabajar."
-                </p>
-                <p className="font-semibold">Cliente {item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+<section class="hero">
+  <div class="hero-text">
+    <h2>Lo Mejor en Tecnología Digital</h2>
+    <p>Descubre nuestro reloj inteligente, audífonos inalámbricos y el celular más potente del mercado.</p>
+    <button>Ver Productos</button>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="Reloj">
+    <img src="https://images.unsplash.com/photo-1518441902110-1c2c38d3b9b9" alt="Audífonos">
+    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Celular">
+  </div>
+</section>
 
-      {/* PRECIO */}
-      <section className="bg-black text-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Oferta especial por tiempo limitado</h2>
-          <p className="text-lg mb-4 line-through text-gray-400">$199</p>
-          <p className="text-5xl font-bold mb-8">$49</p>
-          <button className="bg-white text-black px-10 py-4 rounded-2xl font-semibold hover:scale-105 transition">
-            Obtener acceso inmediato
-          </button>
-          <p className="text-gray-400 mt-6">Garantía de satisfacción de 7 días</p>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="py-10 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Tu Marca. Todos los derechos reservados.
-      </footer>
+<section class="products">
+  <h3>Nuestros Productos</h3>
+  <div class="product-grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="Reloj">
+      <h4>Reloj Inteligente</h4>
+      <p class="price">$49</p>
+      <button>Comprar</button>
     </div>
-  );
-}
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1518441902110-1c2c38d3b9b9" alt="Audífonos">
+      <h4>Audífonos Bluetooth</h4>
+      <p class="price">$29</p>
+      <button>Comprar</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Celular">
+      <h4>Smartphone Pro</h4>
+      <p class="price">$399</p>
+      <button>Comprar</button>
+    </div>
+  </div>
+</section>
+
+<section class="offer">
+  <h3>🔥 Oferta Especial por Tiempo Limitado</h3>
+  <div class="timer">
+    <div class="time-box"><span id="hours">00</span>Horas</div>
+    <div class="time-box"><span id="minutes">00</span>Min</div>
+    <div class="time-box"><span id="seconds">00</span>Seg</div>
+  </div>
+  <button style="background:#22c55e;border:none;padding:15px 30px;border-radius:10px;font-weight:700;cursor:pointer;">Aprovechar Oferta</button>
+</section>
+
+<footer>
+  © 2026 TechStore - Todos los derechos reservados
+</footer>
+
+<script>
+  let countdownDate = new Date().getTime() + (24 * 60 * 60 * 1000);
+
+  let x = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = countdownDate - now;
+
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+    if (distance < 0) {
+      clearInterval(x);
+      document.querySelector(".timer").innerHTML = "OFERTA FINALIZADA";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
